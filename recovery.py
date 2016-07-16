@@ -36,7 +36,7 @@ def moveFile(file, destination):
 	if not os.path.exists(destinationDirectory):
 		os.mkdir(destinationDirectory)
 	
-	fileName = str(fileCounter) + "." + extension.lower()
+	fileName = str(fileCounter).zfill(8) + "_" + os.path.basename(file)
 	destinationFile = os.path.join(destinationDirectory, fileName)
 	if not os.path.exists(destinationFile):
 		shutil.copy(sourcePath, destinationFile)
@@ -81,7 +81,7 @@ for root, dirs, files in os.walk(source, topdown=False):
 		if not os.path.exists(destinationDirectory):
 			os.mkdir(destinationDirectory)
 		
-		fileName = str(fileCounter) + "." + extension.lower()
+		fileName = str(fileCounter).zfill(8) + "_" + os.path.basename(file)
 		destinationFile = os.path.join(destinationDirectory, fileName)
 		if not os.path.exists(destinationFile):
 			shutil.copy2(sourcePath, destinationFile)
