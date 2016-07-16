@@ -5,7 +5,7 @@ from time import localtime, strftime, strptime, mktime
 import shutil
 
 minEventDelta = 60 * 60 * 24 * 4 # 4 days in seconds
-unknownDateFolderName = "Datum unbekannt"
+unknownDateFolderName = "Date unknown"
 
 def getMinimumCreationTime(exif_data):
     creationTime = None
