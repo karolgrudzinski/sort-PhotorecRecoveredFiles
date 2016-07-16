@@ -81,9 +81,12 @@ def writeImages(images, destinationRoot):
         fileName = ntpath.basename(imageTuple[1])
 
         if(creationDate == today):
+            modification_time = localtime(os.path.getmtime(imageTuple[1]))
+            modification_time_str = strftime("%Y-%m-%d_%H-%M-%S", modification_time)
+            new_file_name = modification_time_str + '_' + fileName
             createUnknownDateFolder(destinationRoot)
             destination = os.path.join(destinationRoot, unknownDateFolderName)
-            destinationFilePath = os.path.join(destination, fileName)
+            destinationFilePath = os.path.join(destination, new_file_name)
             
         else:
             if (previousTime == None) or ((previousTime + minEventDelta) < imageTuple[0]):
