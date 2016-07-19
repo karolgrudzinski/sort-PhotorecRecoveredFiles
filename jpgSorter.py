@@ -102,10 +102,12 @@ def writeImages(images, destinationRoot):
             if not (os.path.exists(destination)):
                 destination = os.path.join(destinationRoot, str(int(year) - 1), str(eventNumber))
 
-            destinationFilePath = os.path.join(destination, fileName)
+            creation_date_str = strftime("%Y-%m-%d_%H-%M-%S", t)
+            new_file_name = creation_date_str + '_' + fileName
+            destinationFilePath = os.path.join(destination, new_file_name)
 
         if not (os.path.exists(destinationFilePath)):
-            shutil.move(imageTuple[1], destination)
+            shutil.move(imageTuple[1], destinationFilePath)
         else:
             if (os.path.exists(imageTuple[1])):
                 os.remove(imageTuple[1])
