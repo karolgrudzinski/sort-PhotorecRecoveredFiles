@@ -1,27 +1,24 @@
-import sys
-import math
-import os
 import shutil
 
+import os
 
-def limitFilesPerFolder(folder, maxNumberOfFilesPerFolder):
-	for root, dirs, files in os.walk(folder, topdown=False):
-		for dir in dirs:
-			dirPath = os.path.join(root, dir)
-			filesInFolder = len(os.listdir(dirPath))
-			if(filesInFolder > maxNumberOfFilesPerFolder):
-				numberOfSubfolders = ((filesInFolder - 1) // maxNumberOfFilesPerFolder) + 1
-				for subFolderNumber in range(1, numberOfSubfolders+1):
-					subFolderPath = os.path.join(dirPath, str(subFolderNumber))
-					if not os.path.exists(subFolderPath):
-						os.mkdir(subFolderPath)
-				fileCounter = 1
-				for file in os.listdir(dirPath):	
-					source = os.path.join(dirPath, file)
-					if os.path.isfile(source):
-						destDir = str(((fileCounter - 1) // maxNumberOfFilesPerFolder) + 1)
-						destination = os.path.join(dirPath, destDir, file)
-						shutil.move(source, destination)
-						fileCounter += 1
-                        
 
+def limit_files_per_folder(folder, max_number_of_files_per_folder):
+    for root, directories, files in os.walk(folder, topdown=False):
+        for directory in directories:
+            dir_path = os.path.join(root, directory)
+            files_in_folder = len(os.listdir(dir_path))
+            if files_in_folder > max_number_of_files_per_folder:
+                number_of_subfolders = ((files_in_folder - 1) // max_number_of_files_per_folder) + 1
+                for subFolderNumber in range(1, number_of_subfolders + 1):
+                    sub_folder_path = os.path.join(dir_path, str(subFolderNumber))
+                    if not os.path.exists(sub_folder_path):
+                        os.mkdir(sub_folder_path)
+                file_counter = 1
+                for file_name in os.listdir(dir_path):
+                    source = os.path.join(dir_path, file_name)
+                    if os.path.isfile(source):
+                        dest_dir = str(((file_counter - 1) // max_number_of_files_per_folder) + 1)
+                        destination = os.path.join(dir_path, dest_dir, file_name)
+                        shutil.move(source, destination)
+                        file_counter += 1
