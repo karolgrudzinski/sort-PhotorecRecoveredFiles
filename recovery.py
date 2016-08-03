@@ -65,6 +65,8 @@ while (destination is None) or (not os.path.exists(destination)):
 
 fileNumber = get_number_of_files_in_folder_recursively(source)
 onePercentFiles = int(fileNumber / 100)
+if onePercentFiles == 0:
+    onePercentFiles = 1
 totalAmountToCopy = str(fileNumber)
 print("Files to copy: " + totalAmountToCopy)
 
